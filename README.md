@@ -1,3 +1,4 @@
+在此查看[中文版](./README.md)
 # Assignment Oriented Programming
 
 ## Visual Studio Code
