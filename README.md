@@ -64,6 +64,7 @@ conda activate cling
 mamba install notebook jupyterlab ipywidgets  -c conda-forge
 ```
 > I am not quite sure whether we need all the three packages. 
+
 Use `code` command to open your project. For example, you could create a `playground` directory as your project directory.
 ```shell
 mkdir playground
@@ -79,3 +80,28 @@ Now enjoy!
 ### `gh`: GitHub CLI
 
 ### Git branch
+Here are some very basic commands that you may need to collaborate using git branch and GitHub.
+#### Create a new branch
+You can create a new branch locally and then push it to GitHub.
+```shell
+git checkout -b [name_of_your_new_branch]
+git push origin [name_of_your_new_branch]
+```
+
+#### Get update from main branch
+```shell
+git checkout [name_of_your_new_branch]
+git merge origin/main
+git push origin [name_of_your_new_branch]
+```
+
+> In [this link](https://stackoverflow.com/questions/3876977/update-git-branches-from-master), you may learn more about how to get update from `main` branch.
+
+#### Merge your branch to main branch
+```shell
+git checkout main # Switch to the main branch
+git merge [name_of_your_branch] # Merge your branch to the main branch
+git push # Push the local merge to remote repository (like GitHub)
+```
+
+> You may refer to [this link](https://gist.github.com/nanusdad/7e516743e5e709073f7e) for more information about how to use branch.
