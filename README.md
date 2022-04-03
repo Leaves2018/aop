@@ -345,14 +345,6 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githu
 sudo apt update
 sudo apt install gh
 ```
-### Git branch
-Here are some very basic commands that you may need to collaborate using git branch and GitHub.
-#### Create a new branch
-You can create a new branch locally and then push it to GitHub.
-```shell
-git checkout -b [name_of_your_new_branch]
-git push origin [name_of_your_new_branch]
-```
 
 Then you need to login in with your GitHub account. Enter:
 ```
@@ -375,8 +367,21 @@ git config --global user.email "test@test.com"
 
 Initialize a git repository.
 ```
-git init
+cd <Your Project Directory>
+git init -b main
 ```
+
+Now create a 
+
+### Git branch
+Here are some very basic commands that you may need to collaborate using git branch and GitHub.
+#### Create a new branch
+You can create a new branch locally and then push it to GitHub.
+```shell
+git checkout -b [name_of_your_new_branch]
+git push origin [name_of_your_new_branch]
+```
+
 #### Get update from main branch
 ```shell
 git checkout [name_of_your_new_branch]
