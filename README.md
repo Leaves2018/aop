@@ -47,11 +47,17 @@ Enter command: i
 
 Then you need to add the directory of Tex Live binaries to your path:
 ```
-echo 'PATH=/usr/local/texlive/2021/bin/x86_64-linux:$PATH' > .bashrc
+echo 'PATH=/usr/local/texlive/2021/bin/x86_64-linux:$PATH' > ~/.bashrc
 ```
 
 ### Configure LaTeX for VS Code
-Open VS Code and change to `Extensions` page. Search `LaTeX` and download `LaTeX Workshop`.
+Open Ubuntu terminal, Change to your home directory, and use `code` command to start VS Code:
+```
+cd
+mkdir new_project && cd new_project
+code .
+```
+Open VS Code and click the fifth button `Extensions` or enter `Ctrl + Shift + X`. Search `LaTeX` and download `LaTeX Workshop`.
 
 Then I would like to suggest you to create a directory for your report. For example, create a directory `report`.
 Then create a file `report.tex`, and copy-paste the following content:
@@ -67,6 +73,66 @@ Then create a file `report.tex`, and copy-paste the following content:
 \end{document}
 ```
 Enter `Ctrl + S` to save the file, and you will find that a few files generated. Do not  delete them, but the only one you need to know is the one with suffix of `.pdf` like `report.pdf`. Open it, and then use VS Code's split view to put the `.tex` left side and `.pdf` right side. Now you would have nearly same experience as Overleaf. Everytime you save the `.tex` file, it will compile a new `.pdf` automatically.
+
+Note: You may need to change `"latex-workshop.latex.recipes"` to the following:
+```json
+    "latex-workshop.latex.recipes": [
+    
+        {
+            "name": "latexmk 🔃",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "latexmk (latexmkrc)",
+            "tools": [
+                "latexmk_rconly"
+            ]
+        },
+        {
+            "name": "latexmk (lualatex)",
+            "tools": [
+                "lualatexmk"
+            ]
+        },
+        {
+            "name": "latexmk (xelatex)",
+            "tools": [
+                "xelatexmk"
+            ]
+        },
+        {
+            "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "Compile Rnw files",
+            "tools": [
+                "rnw2tex",
+                "latexmk"
+            ]
+        },
+        {
+            "name": "Compile Jnw files",
+            "tools": [
+                "jnw2tex",
+                "latexmk"
+            ]
+        },
+        {
+            "name": "tectonic",
+            "tools": [
+                "tectonic"
+            ]
+        }
+    ]
+```
 ### Suggestions LaTeX packages
 #### Add code 
 You can use `minted`.
