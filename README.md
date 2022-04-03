@@ -32,8 +32,41 @@ TODO: Step by step installation guide...
 ## Programming Language
 
 ### Python
+First check if your computer already has `Python` installed:
+```shell
+python3 --version
+```
+It should output something like: `Python 3.8.12`. If you do have `Python` installed already, then you may want to read [Miniconda](#miniconda) next.
 
+If not, then one of the easiest way to install Python is through [Python's official website](https://www.python.org/). Just click the `Downloads` button, wait for the downloading and then run the installer.
 
+However, if you are using `Windows` and want to install `Python` in `WSL2`, you might consider some other ways. For example, if you are using `Ubuntu`, you can install `Python` by opening your terminal and enter:
+```shell
+sudo apt install python
+```
+
+#### Miniconda
+After that, I would recommend you install [miniconda](https://docs.conda.io/en/latest/miniconda.html), with which you can create multiple independent virtual environments and manage different packages you might use in different projects.
+
+Go to [miniconda's website](https://docs.conda.io/en/latest/miniconda.html) and download the appropriate version. For example, for `WSL2 Linux`, enter:
+```shell
+wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.11.0-Linux-x86_64.sh
+```
+Then execute the shell scripts:
+```shell
+sh Miniconda3-py38_4.11.0-Linux-x86_64.sh -b
+```
+Next, initialize the shell for `conda`:
+```shell
+~/miniconda3/bin/conda init
+```
+
+#### Jupyter Notebook in VS Code
+Open your `VS Code`, click the fifth button `Extensions` or enter `Ctrl + Shift + X`, search `Jupyter` and install the first three extensions from `Microsoft`: `Jupyter`, `Jupyter Keymap`, `Jupyter Notebook Renderers`.
+
+Then create a new file with a suffix of `.ipynb`, for example, `playground.ipynb`.
+Open this file and follow instructions from `VS Code`, like installing a ipynb kernel.
+Then choose a kernel corresponding to your Python version. Most of the time, the suggested version would be fine.
 ### C++
 If you have successfully installed `WSL2`, you should already have `gcc`. Then for using `C++` in `VS Code` I would recommend you to read [Using C++ on Linux in VS Code](https://code.visualstudio.com/docs/cpp/config-linux) or [Using Clang in Visual Studio Code](https://code.visualstudio.com/docs/cpp/config-clang-mac).
 
@@ -71,9 +104,7 @@ mkdir playground
 code playground
 ```
 Use VS Code GUI to create a file with `.ipynb` suffix, for example, `playground.ipynb`.
-Open the file, switch the kernel to `C++14` (or one of the other two).
-
-Now enjoy!
+Open the file, switch the kernel to `C++14` (or one of the other two), and now enjoy the interactive C++ programming!
 
 ## `aop-start`: A starting point for each assignment
 
