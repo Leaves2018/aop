@@ -74,171 +74,179 @@ Then create a file `report.tex`, and copy-paste the following content:
 ```
 Enter `Ctrl + S` to save the file, and you will find that a few files generated. Do not  delete them, but the only one you need to know is the one with suffix of `.pdf` like `report.pdf`. Open it, and then use VS Code's split view to put the `.tex` left side and `.pdf` right side. Now you would have nearly same experience as Overleaf. Everytime you save the `.tex` file, it will compile a new `.pdf` automatically.
 
-Note: You may need to change `"latex-workshop.latex.recipes"` to the following:
+Note: If you meet errors like:
+```
+This is BibTeX, Version 0.99d (MiKTeX 2.9) The top-level auxiliary file: Thesis.aux 
+I found no \citation commands---while reading file Thesis.aux 
+I found no \bibdata command---while reading file Thesis.aux 
+I found no \bibstyle command---while reading file Thesis.aux 
+(There were 3 error messages)
+```
+ You may need to change `"latex-workshop.latex.recipes"` to the following. To make the change, open `File->Perferences->Settings` in VS Code, search `latex-workshop.latex.recipes` and click _*Edit in settings.json*_.
 ```json
-    "latex-workshop.latex.recipes": [
-    
-        {
-            "name": "latexmk 🔃",
-            "tools": [
-                "latexmk"
-            ]
-        },
-        {
-            "name": "latexmk (latexmkrc)",
-            "tools": [
-                "latexmk_rconly"
-            ]
-        },
-        {
-            "name": "latexmk (lualatex)",
-            "tools": [
-                "lualatexmk"
-            ]
-        },
-        {
-            "name": "latexmk (xelatex)",
-            "tools": [
-                "xelatexmk"
-            ]
-        },
-        {
-            "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
-            "tools": [
-                "pdflatex",
-                "bibtex",
-                "pdflatex",
-                "pdflatex"
-            ]
-        },
-        {
-            "name": "Compile Rnw files",
-            "tools": [
-                "rnw2tex",
-                "latexmk"
-            ]
-        },
-        {
-            "name": "Compile Jnw files",
-            "tools": [
-                "jnw2tex",
-                "latexmk"
-            ]
-        },
-        {
-            "name": "tectonic",
-            "tools": [
-                "tectonic"
-            ]
-        }
-    ],
+"latex-workshop.latex.recipes": [
 
-    "latex-workshop.latex.tools": [
-    
-        {
-            "name": "latexmk",
-            "command": "latexmk",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-pdf",
-                "-outdir=%OUTDIR%",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "lualatexmk",
-            "command": "latexmk",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-lualatex",
-                "-outdir=%OUTDIR%",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "xelatexmk",
-            "command": "latexmk",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-xelatex",
-                "-outdir=%OUTDIR%",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "latexmk_rconly",
-            "command": "latexmk",
-            "args": [
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "pdflatex",
-            "command": "pdflatex",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "bibtex",
-            "command": "bibtex",
-            "args": [
-                "%DOCFILE%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "rnw2tex",
-            "command": "Rscript",
-            "args": [
-                "-e",
-                "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
-            ],
-            "env": {}
-        },
-        {
-            "name": "jnw2tex",
-            "command": "julia",
-            "args": [
-                "-e",
-                "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"
-            ],
-            "env": {}
-        },
-        {
-            "name": "jnw2texmintex",
-            "command": "julia",
-            "args": [
-                "-e",
-                "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
-            ],
-            "env": {}
-        },
-        {
-            "name": "tectonic",
-            "command": "tectonic",
-            "args": [
-                "--synctex",
-                "--keep-logs",
-                "%DOC%.tex"
-            ],
-            "env": {}
-        }
-    ]
+    {
+        "name": "latexmk 🔃",
+        "tools": [
+            "latexmk"
+        ]
+    },
+    {
+        "name": "latexmk (latexmkrc)",
+        "tools": [
+            "latexmk_rconly"
+        ]
+    },
+    {
+        "name": "latexmk (lualatex)",
+        "tools": [
+            "lualatexmk"
+        ]
+    },
+    {
+        "name": "latexmk (xelatex)",
+        "tools": [
+            "xelatexmk"
+        ]
+    },
+    {
+        "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
+        "tools": [
+            "pdflatex",
+            "bibtex",
+            "pdflatex",
+            "pdflatex"
+        ]
+    },
+    {
+        "name": "Compile Rnw files",
+        "tools": [
+            "rnw2tex",
+            "latexmk"
+        ]
+    },
+    {
+        "name": "Compile Jnw files",
+        "tools": [
+            "jnw2tex",
+            "latexmk"
+        ]
+    },
+    {
+        "name": "tectonic",
+        "tools": [
+            "tectonic"
+        ]
+    }
+],
+
+"latex-workshop.latex.tools": [
+
+    {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-pdf",
+            "-outdir=%OUTDIR%",
+            "%DOC%"
+        ],
+        "env": {}
+    },
+    {
+        "name": "lualatexmk",
+        "command": "latexmk",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-lualatex",
+            "-outdir=%OUTDIR%",
+            "%DOC%"
+        ],
+        "env": {}
+    },
+    {
+        "name": "xelatexmk",
+        "command": "latexmk",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-xelatex",
+            "-outdir=%OUTDIR%",
+            "%DOC%"
+        ],
+        "env": {}
+    },
+    {
+        "name": "latexmk_rconly",
+        "command": "latexmk",
+        "args": [
+            "%DOC%"
+        ],
+        "env": {}
+    },
+    {
+        "name": "pdflatex",
+        "command": "pdflatex",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOC%"
+        ],
+        "env": {}
+    },
+    {
+        "name": "bibtex",
+        "command": "bibtex",
+        "args": [
+            "%DOCFILE%"
+        ],
+        "env": {}
+    },
+    {
+        "name": "rnw2tex",
+        "command": "Rscript",
+        "args": [
+            "-e",
+            "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
+        ],
+        "env": {}
+    },
+    {
+        "name": "jnw2tex",
+        "command": "julia",
+        "args": [
+            "-e",
+            "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"
+        ],
+        "env": {}
+    },
+    {
+        "name": "jnw2texmintex",
+        "command": "julia",
+        "args": [
+            "-e",
+            "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
+        ],
+        "env": {}
+    },
+    {
+        "name": "tectonic",
+        "command": "tectonic",
+        "args": [
+            "--synctex",
+            "--keep-logs",
+            "%DOC%.tex"
+        ],
+        "env": {}
+    }
+]
 ```
 ### Suggestions LaTeX packages
 #### Add code 
@@ -278,12 +286,14 @@ Next, initialize the shell for `conda`:
 ~/miniconda3/bin/conda init
 ```
 
+Note: If you are using `macOS` and `zsh`, you may need replace `~/miniconda3/bin/conda init` by `~/miniconda3/bin/conda init zsh`.
+
 #### Jupyter Notebook in VS Code
-Open your `VS Code`, click the fifth button `Extensions` or enter `Ctrl + Shift + X`, search `Jupyter` and install the first three extensions from `Microsoft`: `Jupyter`, `Jupyter Keymap`, `Jupyter Notebook Renderers`.
+Open your `VS Code`, click the fifth button `Extensions` or enter `Ctrl + Shift + X`, search `Jupyter` and install the first three extensions from `Microsoft`: `Jupyter`, `Jupyter Keymap`, `Jupyter Notebook Renderers`. Also search and install `Python` extension.
 
 Then create a new file with a suffix of `.ipynb`, for example, `playground.ipynb`.
 Open this file and follow instructions from `VS Code`, like installing a ipynb kernel.
-Then choose a kernel corresponding to your Python version. Most of the time, the suggested version would be fine.
+Then choose a kernel corresponding to your Python version. Most of the time, the suggested version would be fine. However, it seems like Ubuntu gives you Python but not pip, so you might choose the Python version installed by conda, which works fine.
 ### C++
 If you have successfully installed `WSL2`, you should already have `gcc`. Then for using `C++` in `VS Code` I would recommend you to read [Using C++ on Linux in VS Code](https://code.visualstudio.com/docs/cpp/config-linux) or [Using Clang in Visual Studio Code](https://code.visualstudio.com/docs/cpp/config-clang-mac).
 
@@ -321,12 +331,20 @@ mkdir playground
 code playground
 ```
 Use VS Code GUI to create a file with `.ipynb` suffix, for example, `playground.ipynb`.
-Open the file, switch the kernel to `C++14` (or one of the other two), and now enjoy the interactive C++ programming!
+Open the file, switch the kernel to `C++14` (or one of the other two). Create a new code block 
+
+and now enjoy the interactive C++ programming!
 
 ## `aop-start`: A starting point for each assignment
 
 ### `gh`: GitHub CLI
-
+If you use Ubuntu (like WSL2 Ubuntu), enter the following code in Ubuntu terminal to install `gh`:
+```
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh
+```
 ### Git branch
 Here are some very basic commands that you may need to collaborate using git branch and GitHub.
 #### Create a new branch
