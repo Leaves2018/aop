@@ -354,6 +354,29 @@ git checkout -b [name_of_your_new_branch]
 git push origin [name_of_your_new_branch]
 ```
 
+Then you need to login in with your GitHub account. Enter:
+```
+gh auth login
+```
+and follow the instructions.
+
+Update your git to latest version first.
+```
+sudo add-apt-repository -y ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git -y
+```
+
+Set your git username and email.
+```
+git config --global user.name "test"
+git config --global user.email "test@test.com"
+```
+
+Initialize a git repository.
+```
+git init
+```
 #### Get update from main branch
 ```shell
 git checkout [name_of_your_new_branch]
