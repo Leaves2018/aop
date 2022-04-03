@@ -14,6 +14,9 @@ wsl --install
 in your `Windows PowerShell`.
 
 For details, just follow the official document [Set up a WSL development environment](https://docs.microsoft.com/en-us/windows/wsl/setup/environment), which is really easy to follow.
+
+<!-- How to uninstall wsl2: https://pureinfotech.com/uninstall-wsl2-windows-10/ -->
+
 ## LaTeX
 Of course you can use [Overleaf](https://www.overleaf.com/) especially when you need to collaborate with someone who may not be willing to toss themselves to try the content mentioned in this article.
 
@@ -24,11 +27,52 @@ However, there does exist some benefits for building a local LaTeX environment.
 
 
 For `macOS`, download `MacTeX` from [The MacTeX-2021 Distribution](https://tug.org/mactex/).
-For other sysmtems like ``Linux` and `Windows`, download `TeX Live` from [TeX Live availability](https://www.tug.org/texlive/acquire.html).
 
-TODO: Step by step installation guide...
+For other sysmtems, download `TeX Live` from [TeX Live availability](https://www.tug.org/texlive/acquire.html). Fow `Windows`, you can use the `install-tl-windows.exe` installer, but I would recommend to install WSL2 and install Tex Live in Linux.
 
+### Install Tex Live on Linux
 
+Download and unpack the installer:
+```shell
+wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+tar -zxvf install-tl-unx.tar.gz
+```
+Start the installation:
+```shell
+cd install-tl-unx
+sudo perl install-tl
+[... messages omitted ...]
+Enter command: i
+```
+
+Then you need to add the directory of Tex Live binaries to your path:
+```
+echo 'PATH=/usr/local/texlive/2021/bin/x86_64-linux:$PATH' > .bashrc
+```
+
+### Configure LaTeX for VS Code
+Open VS Code and change to `Extensions` page. Search `LaTeX` and download `LaTeX Workshop`.
+
+Then I would like to suggest you to create a directory for your report. For example, create a directory `report`.
+Then create a file `report.tex`, and copy-paste the following content:
+```latex
+\documentclass[a4paper,12pt]{article}
+\begin{document}
+\title{Assignment Title}
+\author{Your Name (Your ID)}
+\maketitle
+\tableofcontents
+\section{Introduction}
+\section{Conclusion}
+\end{document}
+```
+Enter `Ctrl + S` to save the file, and you will find that a few files generated. Do not  delete them, but the only one you need to know is the one with suffix of `.pdf` like `report.pdf`. Open it, and then use VS Code's split view to put the `.tex` left side and `.pdf` right side. Now you would have nearly same experience as Overleaf. Everytime you save the `.tex` file, it will compile a new `.pdf` automatically.
+### Suggestions LaTeX packages
+#### Add code 
+You can use `minted`.
+```
+pip install Pygments
+```
 ## Programming Language
 
 ### Python
