@@ -114,11 +114,14 @@ I found no \bibstyle command---while reading file Thesis.aux
 You may need to change `"latex-workshop.latex.recipes"` and `"latex-workshop.latex.tools"` to the content in [./LaTeX/settings.json](./LaTeX/settings.json). To make the change, open `File->Perferences->Settings` in VS Code, search `latex-workshop.latex.recipes` and click _*Edit in settings.json*_.
 
 ### Useful LaTeX packages
+- [ ] Add demos for include `code`, `images` and `formulas` in LaTeX.
+
 #### Add code 
 You can use `minted`.
 ```
 pip install Pygments
 ```
+
 ## Programming Language
 
 ### Python
@@ -203,7 +206,7 @@ Open the file, switch the kernel to `C++14` (or one of the other two). Create a 
 ### `aop-start`: A starting point for each assignment
 You could create a template repository for your assignments, and `git clone` it every time when you have a new assignment to handle.
 
-TODO: Create `aop-start` repository.
+- [ ] Create `aop-start` repository.
 
 ### `gh`: GitHub CLI
 If you use Ubuntu (like WSL2 Ubuntu), enter the following code in Ubuntu terminal to install `gh`:
