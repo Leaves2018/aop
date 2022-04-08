@@ -1,5 +1,31 @@
 在此查看[中文版](./README.zh-hans.md)
 # Assignment Oriented Programming
+This code repository describes some of the software and workflow I use in completing my MSc Computer Science assignments, and I hope it will be of some help to more people.
+
+Table of Contents
+=================
+* [Visual Studio Code](#visual-studio-code)
+* [WSL2](#wsl2)
+* [LaTeX](#latex)
+    * [Install Tex Live on Linux](#install-tex-live-on-linux)
+    * [Configure LaTeX for VS Code](#configure-latex-for-vs-code)
+        * [Troubleshooting](#troubleshooting)
+    * [Useful LaTeX packages](#useful-latex-packages)
+        * [Add code](#add-code)
+* [Programming Language](#programming-language)
+    * [Python](#python)
+        * [Miniconda](#miniconda)
+        * [Jupyter Notebook in VS Code](#jupyter-notebook-in-vs-code)
+    * [C++](#c)
+        * [Install xeus-cling](#install-xeus-cling)
+        * [Configure for VS Code](#configure-for-vs-code)
+* [Git and GitHub](#git-and-github)
+    * [aop-start: A starting point for each assignment](#aop-start-a-starting-point-for-each-assignment)
+    * [gh: GitHub CLI](#gh-github-cli)
+    * [Git branch](#git-branch)
+        * [Create a new ranch](#create-a-new-branch)
+        * [Get update from main branch](#get-update-from-main-branch)
+        * [Merge your branch to main branch](#merge-your-branch-to-main-branch)
 
 ## Visual Studio Code
 That's where the dream starts. Almost all the configurations/operations mentioned in this article require and on top of VS Code.
