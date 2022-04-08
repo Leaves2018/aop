@@ -4,7 +4,7 @@
 ## Visual Studio Code
 That's where the dream starts. Almost all the configurations/operations mentioned in this article require and on top of VS Code.
 
-Just go to [VS Code Official Website](https://code.visualstudio.com/), download the installer, click next on each page.
+Just go to [VS Code Official Website](https://code.visualstudio.com/), download the installer and click next on each page.
 
 ## WSL2
 If you have latest Windows 10 or 11, you only need to enter
@@ -23,12 +23,12 @@ Of course you can use [Overleaf](https://www.overleaf.com/) especially when you 
 However, there does exist some benefits for building a local LaTeX environment.
 * First, you do not need network connection for writing in LaTeX.
 * Second, when your assignment involves some images/plots output from code, it is quite common that you may replace old flawed ones with newly correct ones. A local LaTeX environment will automatically recompile without your effort to upload to Ovealeaf again. 
-* Third, it is actually not that hard to install a local LaTeX environment.
+* Third, it is actually not that hard to install a local LaTeX environment. Not to mention that it's free.
 
 
-For `macOS`, download `MacTeX` from [The MacTeX-2021 Distribution](https://tug.org/mactex/).
+For `macOS`, download `MacTeX` from [The MacTeX-2021 Distribution](https://tug.org/mactex/) and click next on each page.
 
-For other sysmtems, download `TeX Live` from [TeX Live availability](https://www.tug.org/texlive/acquire.html). Fow `Windows`, you can use the `install-tl-windows.exe` installer, but I would recommend to install WSL2 and install Tex Live in Linux.
+For other sysmtems, download `TeX Live` from [TeX Live availability](https://www.tug.org/texlive/acquire.html). For `Windows`, you can use the `install-tl-windows.exe` installer, but I would recommend to install WSL2 and install Tex Live in Linux.
 
 ### Install Tex Live on Linux
 
@@ -72,9 +72,12 @@ Then create a file `report.tex`, and copy-paste the following content:
 \section{Conclusion}
 \end{document}
 ```
-Enter `Ctrl + S` to save the file, and you will find that a few files generated. Do not  delete them, but the only one you need to know is the one with suffix of `.pdf` like `report.pdf`. Open it, and then use VS Code's split view to put the `.tex` left side and `.pdf` right side. Now you would have nearly same experience as Overleaf. Everytime you save the `.tex` file, it will compile a new `.pdf` automatically.
+Enter `Ctrl + S` to save the file, and you will find that a few files generated. (If not, click the green triangle button in the top right corner of VS Code.) Do not  delete them, but the only one you need to know is the one with suffix of `.pdf` like `report.pdf`. 
 
-Note: If you meet errors like:
+Open it, and then use VS Code's split view to put the `.tex` left side and `.pdf` right side. Now you would have nearly same experience as Overleaf. Everytime you save the `.tex` file, it will compile a new `.pdf` automatically. Whenever any local resource file referenced by your .tex file changes (e.g. rerunning the code produces a new image file with the same name), it will automatically recompile to generate a new .pdf.
+
+#### Troubleshooting
+If you meet errors like:
 ```
 This is BibTeX, Version 0.99d (MiKTeX 2.9) The top-level auxiliary file: Thesis.aux 
 I found no \citation commands---while reading file Thesis.aux 
@@ -82,173 +85,9 @@ I found no \bibdata command---while reading file Thesis.aux
 I found no \bibstyle command---while reading file Thesis.aux 
 (There were 3 error messages)
 ```
- You may need to change `"latex-workshop.latex.recipes"` to the following. To make the change, open `File->Perferences->Settings` in VS Code, search `latex-workshop.latex.recipes` and click _*Edit in settings.json*_.
-```json
-"latex-workshop.latex.recipes": [
+You may need to change `"latex-workshop.latex.recipes"` and `"latex-workshop.latex.tools"` to the content in [./LaTeX/settings.json](./LaTeX/settings.json). To make the change, open `File->Perferences->Settings` in VS Code, search `latex-workshop.latex.recipes` and click _*Edit in settings.json*_.
 
-    {
-        "name": "latexmk 🔃",
-        "tools": [
-            "latexmk"
-        ]
-    },
-    {
-        "name": "latexmk (latexmkrc)",
-        "tools": [
-            "latexmk_rconly"
-        ]
-    },
-    {
-        "name": "latexmk (lualatex)",
-        "tools": [
-            "lualatexmk"
-        ]
-    },
-    {
-        "name": "latexmk (xelatex)",
-        "tools": [
-            "xelatexmk"
-        ]
-    },
-    {
-        "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
-        "tools": [
-            "pdflatex",
-            "bibtex",
-            "pdflatex",
-            "pdflatex"
-        ]
-    },
-    {
-        "name": "Compile Rnw files",
-        "tools": [
-            "rnw2tex",
-            "latexmk"
-        ]
-    },
-    {
-        "name": "Compile Jnw files",
-        "tools": [
-            "jnw2tex",
-            "latexmk"
-        ]
-    },
-    {
-        "name": "tectonic",
-        "tools": [
-            "tectonic"
-        ]
-    }
-],
-
-"latex-workshop.latex.tools": [
-
-    {
-        "name": "latexmk",
-        "command": "latexmk",
-        "args": [
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "-pdf",
-            "-outdir=%OUTDIR%",
-            "%DOC%"
-        ],
-        "env": {}
-    },
-    {
-        "name": "lualatexmk",
-        "command": "latexmk",
-        "args": [
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "-lualatex",
-            "-outdir=%OUTDIR%",
-            "%DOC%"
-        ],
-        "env": {}
-    },
-    {
-        "name": "xelatexmk",
-        "command": "latexmk",
-        "args": [
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "-xelatex",
-            "-outdir=%OUTDIR%",
-            "%DOC%"
-        ],
-        "env": {}
-    },
-    {
-        "name": "latexmk_rconly",
-        "command": "latexmk",
-        "args": [
-            "%DOC%"
-        ],
-        "env": {}
-    },
-    {
-        "name": "pdflatex",
-        "command": "pdflatex",
-        "args": [
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-file-line-error",
-            "%DOC%"
-        ],
-        "env": {}
-    },
-    {
-        "name": "bibtex",
-        "command": "bibtex",
-        "args": [
-            "%DOCFILE%"
-        ],
-        "env": {}
-    },
-    {
-        "name": "rnw2tex",
-        "command": "Rscript",
-        "args": [
-            "-e",
-            "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
-        ],
-        "env": {}
-    },
-    {
-        "name": "jnw2tex",
-        "command": "julia",
-        "args": [
-            "-e",
-            "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"
-        ],
-        "env": {}
-    },
-    {
-        "name": "jnw2texmintex",
-        "command": "julia",
-        "args": [
-            "-e",
-            "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
-        ],
-        "env": {}
-    },
-    {
-        "name": "tectonic",
-        "command": "tectonic",
-        "args": [
-            "--synctex",
-            "--keep-logs",
-            "%DOC%.tex"
-        ],
-        "env": {}
-    }
-]
-```
-### Suggestions LaTeX packages
+### Useful LaTeX packages
 #### Add code 
 You can use `minted`.
 ```
@@ -263,7 +102,7 @@ python3 --version
 ```
 It should output something like: `Python 3.8.12`. If you do have `Python` installed already, then you may want to read [Miniconda](#miniconda) next.
 
-If not, then one of the easiest way to install Python is through [Python's official website](https://www.python.org/). Just click the `Downloads` button, wait for the downloading and then run the installer.
+If not, then one of the easiest ways to install Python is through [Python's official website](https://www.python.org/). Just click the `Downloads` button, wait for the downloading and then run the installer.
 
 However, if you are using `Windows` and want to install `Python` in `WSL2`, you might consider some other ways. For example, if you are using `Ubuntu`, you can install `Python` by opening your terminal and enter:
 ```shell
@@ -298,6 +137,7 @@ Then choose a kernel corresponding to your Python version. Most of the time, the
 If you have successfully installed `WSL2`, you should already have `gcc`. Then for using `C++` in `VS Code` I would recommend you to read [Using C++ on Linux in VS Code](https://code.visualstudio.com/docs/cpp/config-linux) or [Using Clang in Visual Studio Code](https://code.visualstudio.com/docs/cpp/config-clang-mac).
 
 Here I would like to introduce how to write `C++` in Jupyter Notebook within VS Code, just like `Python`.
+> Note: It seems like `xeus-cling` does not support latest version of macOS. See [this issue](https://github.com/jupyter-xeus/xeus-cling/issues/403) for details.
 #### Install `xeus-cling`
 We first follow [xeus-cling's official installation guide](https://github.com/jupyter-xeus/xeus-cling).
 
@@ -323,7 +163,7 @@ Activate `cling` virtual environment and install missing Jupyter related depende
 conda activate cling
 mamba install notebook jupyterlab ipywidgets  -c conda-forge
 ```
-> I am not quite sure whether we need all the three packages. 
+> I am not quite sure whether we need all the three packages, but theses three work fine under WSL2 Ubuntu 20.04.
 
 Use `code` command to open your project. For example, you could create a `playground` directory as your project directory.
 ```shell
@@ -331,11 +171,13 @@ mkdir playground
 code playground
 ```
 Use VS Code GUI to create a file with `.ipynb` suffix, for example, `playground.ipynb`.
-Open the file, switch the kernel to `C++14` (or one of the other two). Create a new code block 
+Open the file, switch the kernel to `C++14` (or one of the other two). Create a new code block and now enjoy the interactive C++ programming!
 
-and now enjoy the interactive C++ programming!
+## Git and GitHub
+### `aop-start`: A starting point for each assignment
+You could create a template repository for your assignments, and `git clone` it every time when you have a new assignment to handle.
 
-## `aop-start`: A starting point for each assignment
+TODO: Create `aop-start` repository.
 
 ### `gh`: GitHub CLI
 If you use Ubuntu (like WSL2 Ubuntu), enter the following code in Ubuntu terminal to install `gh`:
@@ -371,7 +213,20 @@ cd <Your Project Directory>
 git init -b main
 ```
 
-Now create a 
+Now create a repository on GitHub via `gh`:
+```
+gh repo create
+```
+and follow the instructions. 
+> Note: If you do have created a local git repository before (like through `git init -b main`), then I would recommend you to choose `Push an existing local repository to GitHub` at the first step. 
+
+After that, you can use the following code to make an initial commit:
+```
+git add .
+git commit -m "Initial commit"
+git push
+```
+Or you can use VS Code GUI to make it, which is even simpler and more convenient.
 
 ### Git branch
 Here are some very basic commands that you may need to collaborate using git branch and GitHub.

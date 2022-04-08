@@ -1,3 +1,4 @@
+暂未完成翻译……
 # 面向作业编程
 ## Visual Studio Code
 
